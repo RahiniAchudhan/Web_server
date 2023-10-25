@@ -28,9 +28,32 @@ Serving the HTML pages.
 
 Testing the webserver
 # PROGRAM:
-Type your code here
-# OUTPUT:
+``````
+from http.serer import HTTPServer,BaseHTTPRequestHandler
 
+content = """
+<html>
+<head>
+</head>
+<body>
+<hl>Welcome</hl>
+</body>
+</html>
+"""
+
+class HelloHandler(BaseHTTPRequestHandler):
+def do_GET(self):
+self.send_response(200)
+self.send_header('Content-type', 'text/html; charset=utf-8)
+self.end_headers()
+self.wfile.write(content.encode())
+
+server_address = (' ', 80)
+httpd = HTTPserver(server_address, HelloHandler)
+httpd.server_forever()
+``````
+# OUTPUT:
+![Alt text](webserver.jpg)
 # RESULT:
 
 The program is executed succesfully
